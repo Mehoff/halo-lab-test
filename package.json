@@ -2,11 +2,10 @@
   "name": "halo-lab-test",
   "version": "0.0.1",
   "description": "Sample description",
-  "main": "index.ts",
+  "main": "server.ts",
   "scripts": {
-    "start": "npx ts-node index.ts",
-    "dev": "npx nodemon --exec \"npx ts-node index.ts\""
-  
+    "start": "npx ts-node src/server.ts",
+    "dev": "npx nodemon --watch \"src/\" --ext \"ts,json\" --ignore \"src//*.spec.ts\" --exec \"npx ts-node src/server.ts\""
   },
   "author": "Mehoff",
   "license": "ISC",
