@@ -8,6 +8,9 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "resolveJsonModule": true                            
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["ES6"]                            
   }
 }
