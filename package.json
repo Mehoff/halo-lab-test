@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npx ts-node src/server.ts",
     "dev": "npx nodemon --watch \"src/\" --ext \"ts,json\" --ignore \"src//*.spec.ts\" --exec \"npx ts-node src/server.ts\"",
-    "start:watch": "npx nodemon --watch \"src/\" --ext \"ts,json\" --ignore \"src//*.spec.ts\" --exec \"npx ts-node dist/server.js\"",
-    "build": "npx tsc -b"
+    "build": "npx tsc -b",
+    "development": "nodemon -L src/server.ts"
   },
   "author": "Mehoff",
   "license": "ISC",

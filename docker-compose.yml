@@ -19,6 +19,9 @@ services:
     ports:
       - "6379:6379"
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: nodejs
     image: halo-lab-test
     depends_on:
@@ -26,3 +29,5 @@ services:
       - redis
     ports: 
       - "3000:3000"
+    volumes:
+      - ./src:/usr/app/src

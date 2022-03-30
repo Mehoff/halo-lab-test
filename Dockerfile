@@ -1,12 +1,11 @@
-FROM node as builder
-WORKDIR /usr/src/app
-
+FROM node
+WORKDIR /usr/app
 COPY package*.json ./
+
 RUN npm install
-COPY . .
-RUN npm run build
+COPY . ./
 
 COPY .env .
 
 EXPOSE 3000
-CMD ["node", "dist/server.js"]
+CMD ["npm", "run", "development"]
