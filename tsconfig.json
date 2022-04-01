@@ -4,13 +4,15 @@
     "module": "commonjs",                                
     "esModuleInterop": true,                             
     "forceConsistentCasingInFileNames": true,           
-    "strict": true,                                      
+    "strict": false,                                      
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["ES6"]                            
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false,
+    "lib": ["ES6"]                           
   }
 }
