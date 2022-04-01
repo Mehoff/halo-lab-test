@@ -1,6 +1,8 @@
 import Category from "../entities/category";
 import { AppDataSource } from "./data-source";
 
+import Categories from "./fixtures/category.fixtures";
+
 const getEntities = async () => {
   const entities = [];
   await AppDataSource.entityMetadatas.forEach((e) =>
@@ -25,11 +27,5 @@ export const clearDb = async () => {
 export const populateDb = async () => {
   await clearDb();
 
-  const category = new Category();
-  category.name = "Comedy";
-
-  const category1 = new Category();
-  category1.name = "Horror";
-
-  AppDataSource.manager.save([category, category1]);
+  AppDataSource.manager.getRepository(Category).save(Categories);
 };

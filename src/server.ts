@@ -6,13 +6,15 @@ import app from "./index";
 app.listen(process.env.APP_PORT, async () => {
   console.info(`Server is listening on port ${process.env.APP_PORT}`);
 
-  console.log("Initialize db...");
-  AppDataSource.initialize()
-    .then(async () => {
-      console.log("Populating db...");
-      await populateDb();
-    })
-    .catch((err: Error) => {
-      console.error(err);
-    });
+  setTimeout(() => {
+    console.log("Initialize db...");
+    AppDataSource.initialize()
+      .then(async () => {
+        console.log("Populating db...");
+        await populateDb();
+      })
+      .catch((err: Error) => {
+        console.error(err);
+      });
+  });
 });

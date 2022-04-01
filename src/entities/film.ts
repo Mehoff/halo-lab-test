@@ -1,10 +1,16 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import Actor from "./actor";
 import Category from "./category";
 
 @Entity({ name: "film" })
 class Film {
-  @PrimaryColumn({ type: "uuid" })
+  @PrimaryGeneratedColumn("uuid")
   public id: string;
 
   @Column({ unique: true, length: 128 })
@@ -13,11 +19,17 @@ class Film {
   @Column({ length: 512 })
   public description: string;
 
-  @ManyToMany(() => Category, (category) => category.films)
+  @ManyToMany(() => Category, (category) => category.films, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   @JoinTable()
   public categories: Category[];
 
-  @ManyToMany(() => Actor, (actor) => actor.films)
+  @ManyToMany(() => Actor, (actor) => actor.films, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   @JoinTable()
   public actors: Actor[];
 

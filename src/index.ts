@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 
-import pingRouter from "./routes/ping";
+import { categoriesRouter } from "./controllers/categories";
 
 dotenv.config();
 
@@ -9,6 +9,6 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(pingRouter);
+app.use("/categories", categoriesRouter);
 
 export default app;
