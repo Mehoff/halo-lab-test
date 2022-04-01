@@ -13,6 +13,7 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "noImplicitAny": false,
+    "typeRoots": ["./node-modules/@types", "./typings"],
     "lib": ["ES6"]                           
   }
 }

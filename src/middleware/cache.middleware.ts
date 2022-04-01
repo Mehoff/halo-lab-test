@@ -3,30 +3,23 @@ import NodeCache from "node-cache";
 
 const cache = new NodeCache();
 
+//Todo: redis cache
+
 export const cacheMw = (req: Request, res: Response, next: NextFunction) => {
-  // Check if node-catce has cahched value
-  // if does - res.json(...)
-  // if not - next()
+  if (req.method !== "GET") return next();
 
-  // Use `originalUrl for key`
-  console.log("originalUrl: ", req.originalUrl);
-  console.log("baseUrl: ", req.baseUrl);
-  console.log("url: ", req.url);
+  const key = req.originalUrl;
 
-  const nodeCacheResult = getFromCache(req.originalUrl);
-  if (nodeCacheResult) {
-    return res.json(nodeCacheResult);
+  const memoryCacheResult = cache.get(key);
+  if (memoryCacheResult) {
+    return res.send(memoryCacheResult);
+  } else {
+    res._send = res.send;
+    res.send = (body): Response<any, Record<string, any>> => {
+      cache.set(key, body);
+      return res._send(body);
+    };
   }
 
-  //Todo: redis
-
   next();
-};
-
-export const getFromCache = (key: string): any => {
-  return cache.get(key);
-};
-
-export const setToCache = (key: string, value: any): void => {
-  cache.set(key, value);
 };
