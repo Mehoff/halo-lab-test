@@ -10,7 +10,6 @@ app.listen(process.env.APP_PORT, async () => {
     console.log("Initialize db...");
     AppDataSource.initialize()
       .then(async () => {
-        console.log("Populating db...");
         await populateDb();
       })
       .catch((err: Error) => {
