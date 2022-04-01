@@ -3,7 +3,9 @@ import NodeCache from "node-cache";
 
 const cache = new NodeCache();
 
-//Todo: redis cache
+// Todo:
+// redis cache
+// fix:'ERR_HTTP_HEADERS_SENT'
 
 export const cacheMw = (req: Request, res: Response, next: NextFunction) => {
   if (req.method !== "GET") return next();
@@ -15,11 +17,11 @@ export const cacheMw = (req: Request, res: Response, next: NextFunction) => {
     return res.send(memoryCacheResult);
   } else {
     res._send = res.send;
-    res.send = (body): Response<any, Record<string, any>> => {
+    //@ts-ignore
+    res.send = (body: any) => {
+      res._send(body);
       cache.set(key, body);
-      return res._send(body);
     };
   }
-
   next();
 };

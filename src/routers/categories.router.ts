@@ -7,7 +7,7 @@ import { cacheMw } from "../middleware/cache.middleware";
 const router: Router = Router();
 const categoriesService = new CategoriesService();
 
-router.get("/", async (req: Request, res: Response) => {
+router.get("/", cacheMw, async (req: Request, res: Response) => {
   const categories = await categoriesService.findAll();
   res.send(categories);
 });
@@ -21,9 +21,9 @@ router.get(
     const { name } = req.params;
 
     const category = await categoriesService.findOneByName(name);
-    if (!category) return res.json({ error: "Failed to get category" });
+    if (!category) return res.send({ error: "Failed to get category" });
 
-    return res.send(category);
+    res.send(category);
   }
 );
 
