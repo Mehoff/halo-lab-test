@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
+import NodeCache from "node-cache";
 
-import { categoriesRouter } from "./controllers/categories";
+import { categoriesRouter } from "./routers/categories.router";
 
 dotenv.config();
 
