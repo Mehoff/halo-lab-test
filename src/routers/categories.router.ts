@@ -23,6 +23,7 @@ router.get(
     const category = await categoriesService.findOneByName(name);
     if (!category) return res.send({ error: "Failed to get category" });
 
+    console.log("Before sending category");
     res.send(category);
   }
 );

@@ -1,5 +1,5 @@
 declare namespace Express {
   export interface Response {
-    _send: any;
+    originalSend: Send<ResBody, this>;
   }
 }
