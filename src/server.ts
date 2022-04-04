@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { AppDataSource } from "./db/data-source";
-import { populateDb, disconnect } from "./db/utils";
+import { reinitializeDb, disconnect } from "./db/utils";
 import { redis, setupRedis } from "./redis/client";
 
 import app from "./index";
@@ -12,7 +12,7 @@ app.listen(process.env.APP_PORT, async () => {
     console.log("Initialize db...");
     AppDataSource.initialize()
       .then(async () => {
-        await populateDb();
+        await reinitializeDb();
         await setupRedis();
       })
       .catch((err: Error) => {

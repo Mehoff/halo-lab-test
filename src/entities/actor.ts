@@ -4,7 +4,7 @@ import Film from "./film";
 @Entity({ name: "actor" })
 class Actor {
   @PrimaryGeneratedColumn("uuid")
-  public id: string;
+  public id?: string;
 
   @Column({ length: 128 })
   public name: string;
@@ -13,7 +13,7 @@ class Actor {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  public films: Film[];
+  public films?: Film[];
 }
 
 export default Actor;

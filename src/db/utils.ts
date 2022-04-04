@@ -1,7 +1,12 @@
-import Category from "../entities/category";
 import { AppDataSource } from "./data-source";
 
+import Category from "../entities/category";
+import Actor from "../entities/actor";
+import Films from "./fixtures/film.fixtures";
+
 import Categories from "./fixtures/category.fixtures";
+import Actors from "./fixtures/actor.fixtures";
+import Film from "../entities/film";
 
 const getEntities = async () => {
   const entities = [];
@@ -24,12 +29,17 @@ export const clearDb = async () => {
   }
 };
 
-export const populateDb = async () => {
+export const reinitializeDb = async () => {
   console.log("Populating db...");
-
   await clearDb();
 
-  AppDataSource.manager.getRepository(Category).save(Categories);
+  try {
+    await AppDataSource.manager.getRepository(Category).save(Categories);
+    await AppDataSource.manager.getRepository(Actor).save(Actors);
+    await AppDataSource.manager.getRepository(Film).save(Films);
+  } catch (err) {
+    console.error("Error on populating db: ", err);
+  }
 };
 
 export const disconnect = async () => {

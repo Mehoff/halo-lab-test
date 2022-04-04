@@ -14,7 +14,8 @@ export class CategoriesService {
     const category: Category = await this.categoryRepository.findOne({
       where: { name: ILike(name) },
     });
-    console.log(`Get '${name}' from Postgres`);
+
+    console.info(`Get '${name}' from Postgres...`);
     return category;
   }
 }
