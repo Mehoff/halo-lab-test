@@ -10,6 +10,8 @@ const cache = new NodeCache({
 export async function cacheMw(req: Request, res: Response, next: NextFunction) {
   if (req.method !== "GET") return next();
 
+  const key = req.originalUrl;
+
   res.originalSend = res.send;
   //@ts-ignore
   res.send = async (body) => {
@@ -21,8 +23,6 @@ export async function cacheMw(req: Request, res: Response, next: NextFunction) {
       JSON.stringify(body)
     );
   };
-
-  const key = req.originalUrl;
 
   const memoryCacheResult = cache.get(key);
   if (memoryCacheResult) {
@@ -36,8 +36,6 @@ export async function cacheMw(req: Request, res: Response, next: NextFunction) {
     console.info(`Found ${key} in REDIS cache`);
     res.send(JSON.parse(redisCacheResult));
     return;
-  } else {
-    console.info(`Cache not found for ${key}`);
-    next();
   }
+  next();
 }
