@@ -1,9 +1,9 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryColumn } from "typeorm";
 import Film from "./film";
 
 @Entity({ name: "category" })
 class Category {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryColumn({ type: "uuid", select: false })
   public id?: string;
 
   @Column({ length: 64 })

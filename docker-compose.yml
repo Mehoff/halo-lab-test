@@ -27,5 +27,7 @@ services:
       - redis
     ports: 
       - "3000:3000"
+    env_file:
+      - .env
     volumes:
       - ./src:/usr/app/src

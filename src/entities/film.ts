@@ -1,16 +1,10 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
 import Actor from "./actor";
 import Category from "./category";
 
 @Entity({ name: "film" })
 class Film {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryColumn({ type: "uuid" })
   public id: string;
 
   @Column({ unique: true, length: 128 })

@@ -16,6 +16,8 @@ export class FilmService {
       relations: ["actors", "categories"],
     });
 
+    delete film.id;
+
     console.info(`Get ${title} from Postgres...`);
     return film;
   }

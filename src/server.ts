@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { AppDataSource } from "./db/data-source";
 import { reinitializeDb, disconnect } from "./db/utils";
-import { redis, setupRedis } from "./redis/client";
+import { redis, setupRedis } from "./redis/redisClient";
 
 import app from "./index";
 

@@ -1,9 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 
 import NodeCache from "node-cache";
-import { redis } from "../redis/client";
+import { redis } from "../redis/redisClient";
 
-const cache = new NodeCache({ stdTTL: 10 });
+const cache = new NodeCache({
+  stdTTL: parseInt(process.env.INMEMORY_CACHE_TTL),
+});
 
 export async function cacheMw(req: Request, res: Response, next: NextFunction) {
   if (req.method !== "GET") return next();
@@ -13,7 +15,11 @@ export async function cacheMw(req: Request, res: Response, next: NextFunction) {
   res.send = async (body) => {
     res.originalSend(body);
     cache.set(key, body);
-    await redis.setEx(key, 30, JSON.stringify(body));
+    await redis.setEx(
+      key,
+      parseInt(process.env.REDIS_CACHE_TTL),
+      JSON.stringify(body)
+    );
   };
 
   const key = req.originalUrl;
