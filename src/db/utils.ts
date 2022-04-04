@@ -26,8 +26,12 @@ export const clearDb = async () => {
 
 export const populateDb = async () => {
   console.log("Populating db...");
-  
+
   await clearDb();
 
   AppDataSource.manager.getRepository(Category).save(Categories);
+};
+
+export const disconnect = async () => {
+  await AppDataSource.destroy();
 };

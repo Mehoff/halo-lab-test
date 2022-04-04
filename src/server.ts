@@ -1,6 +1,8 @@
 import "reflect-metadata";
 import { AppDataSource } from "./db/data-source";
-import { populateDb } from "./db/utils";
+import { populateDb, disconnect } from "./db/utils";
+import { redis, setupRedis } from "./redis/client";
+
 import app from "./index";
 
 app.listen(process.env.APP_PORT, async () => {
@@ -11,9 +13,15 @@ app.listen(process.env.APP_PORT, async () => {
     AppDataSource.initialize()
       .then(async () => {
         await populateDb();
+        await setupRedis();
       })
       .catch((err: Error) => {
         console.error(err);
       });
   });
+});
+
+process.on("SIGINT", async () => {
+  await disconnect();
+  await redis.quit();
 });
