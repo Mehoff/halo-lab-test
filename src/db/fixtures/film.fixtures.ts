@@ -25,7 +25,7 @@ const FILM_THUNDERBALL: Film = {
   actors: [Actors[0], Actors[1], Actors[2], Actors[3]],
   categories: [Categories[2], Categories[3]],
   description: "Description",
-  title: "Thundeball",
+  title: "Thunderball",
   release_year: 1965,
 };
 

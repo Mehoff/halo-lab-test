@@ -8,7 +8,7 @@
 
 1. Make sure you have Docker installed and running
 2. Clone this repository with `git clone https://github.com/Mehoff/halo-lab-test.git `
-3. Create .env file and fill it with following data:
+3. Move to project directory, create .env file and fill it with following data:
 
 ```
 APP_PORT=3000
@@ -19,10 +19,9 @@ REDIS_CACHE_TTL=15
 IMEMORY_CACHE_TTL=10
 ```
 
-4. Run next commands separately:
+4. Run next command:
 
 ```
-docker build halo-lab-test .
 docker-compose up
 ```
 
@@ -39,3 +38,11 @@ Every request is being logged into console and has information about it:
 
 - Time spent to process request
 - Source of returned data
+
+## Request examples
+
+- `GET /films/parasites`
+- `GET /films/goldfinger`
+- `GET /films/thunderball`
+- `GET /categories/horror`
+- `GET /categories/action`

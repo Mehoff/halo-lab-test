@@ -17,9 +17,6 @@ app.listen(process.env.APP_PORT, async () => {
       await AppDataSource.initialize();
       await reinitializeDb();
       await setupRedis();
-      console.log(process.env.INMEMORY_CACHE_TTL);
-      console.log(process.env.REDIS_CACHE_TTL);
-
       break;
     } catch (err) {
       retries -= 1;
