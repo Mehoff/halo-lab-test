@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from "typeorm";
 import Film from "./film";
 
 @Entity({ name: "category" })

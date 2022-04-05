@@ -11,10 +11,12 @@ export class FilmService {
   }
 
   public async findOneByTitle(title: string): Promise<Film> {
-    const film = await this.filmRepository.findOne({
-      where: { title: ILike(title) },
-      relations: ["actors", "categories"],
-    });
+    const film = await this.filmRepository
+      .createQueryBuilder("film")
+      .where("film.title ilike :title", { title })
+      .leftJoinAndSelect("film.categories", "category")
+      .leftJoinAndSelect("film.actors", "actor")
+      .getOne();
 
     delete film.id;
 
