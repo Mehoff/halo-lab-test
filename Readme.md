@@ -19,9 +19,10 @@ REDIS_CACHE_TTL=30
 INMEMORY_CACHE_TTL=15
 ```
 
-4. Run next command:
+4. Run next commands:
 
 ```
+docker build -t halo-lab-test .
 docker-compose up
 ```
 
