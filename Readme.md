@@ -15,8 +15,8 @@ APP_PORT=3000
 POSTGRES_PORT=5423
 REDIS_PORT=6379
 REDIS_HOST=redis
-REDIS_CACHE_TTL=15
-IMEMORY_CACHE_TTL=10
+REDIS_CACHE_TTL=30
+INMEMORY_CACHE_TTL=15
 ```
 
 4. Run next command:
@@ -25,7 +25,7 @@ IMEMORY_CACHE_TTL=10
 docker-compose up
 ```
 
-Server should start on `http://localhost:3000/` after Postgres and Redis initialization.
+Server should start at `http://localhost:3000/` after Postgres and Redis initialization.
 
 ## Endpoints
 
@@ -44,5 +44,6 @@ Every request is being logged into console and has information about it:
 - `GET /films/parasites`
 - `GET /films/goldfinger`
 - `GET /films/thunderball`
+- `GET /films/moonraker`
 - `GET /categories/horror`
 - `GET /categories/action`
